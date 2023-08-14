@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import DataFetchComponent from './components/usereducercomponent/datafetchcomponent';
 
 import ProductComponent from './components/productcomponent/productcomponent';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,7 @@ const message = 'React is Great!!!';
 
 root.render(
   <React.StrictMode>
-      <ProductComponent/>
+      <DataFetchComponent/>
   </React.StrictMode>
 );
 

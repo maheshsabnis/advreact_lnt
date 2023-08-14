@@ -13,6 +13,8 @@
     - JS Functions those are invoked at component level only (and not inside any other function inside the component)
 
     - useState()
+        - USed to define a component's state
+        - Define a Dispath action that will update the state
     - useContext()
     - useEffect(()=>{
         ...DiD MOUNT Logic
@@ -21,6 +23,16 @@
         }
     },[])
     - useReducer()
+        - If the state is complex(?)
+            - The state is dependant on some extarnal calls based on which it will be updated, then to define a state transition, we can use 'useReducer()' instead of useState()
+````javascript
+    let stateObject = {
+        data:[], /* Actual data in state taht will be updated */
+        loading:'', /* Intilaization of external HTTP/Socket call to fetch data */
+        error: '' /* the failure of the call */
+    }
+````
+
     - useMemo()
     - useCallback()
     - ... and many more
