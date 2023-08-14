@@ -1,0 +1,35 @@
+import React, {useContext} from 'react'
+
+import { DataContext } from '../datacontext'
+
+
+const SelectComponent = () => {
+    /* 1. Subscribe to the context*/
+  let dataSource = useContext(DataContext);
+
+  /* lets create a fallback if the dataSource is invalid */
+
+  if(dataSource === undefined || dataSource.length === 0) {
+    return (
+        <div className='alert alert-danger'>
+            <strong>
+                No data to show
+            </strong>
+        </div>
+    )
+  }
+  return (
+    <div className='contianer'>
+        <select className='form-control'>
+            <option>Select Data</option>
+            {
+                dataSource.map((record,index)=>(
+                    <option key={index} value={record}>{record}</option>
+                ))
+            }
+        </select>
+    </div>
+  )
+}
+
+export default SelectComponent
