@@ -8,6 +8,12 @@ import DataFetchComponent from './components/usereducercomponent/datafetchcompon
 import ProductComponent from './components/productcomponent/productcomponent';
 
 import ToggleComponent from './components/lifecycle/togglecomponent';
+import MainReduxComponent from './reduxapp/views/mainreduxcontainercomponent';
+
+import { Provider } from 'react-redux';
+/* Using the Redux Objects */
+import { store } from './reduxapp/store';
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +22,9 @@ const message = 'React is Great!!!';
 
 root.render(
   <React.StrictMode>
-      <ToggleComponent/>
+    <Provider store={store}>
+       <MainReduxComponent></MainReduxComponent>
+    </Provider> 
   </React.StrictMode>
 );
 
