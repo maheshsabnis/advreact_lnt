@@ -6,6 +6,8 @@ import App from './App';
 import DataFetchComponent from './components/usereducercomponent/datafetchcomponent';
 
 import ProductComponent from './components/productcomponent/productcomponent';
+
+import ToggleComponent from './components/lifecycle/togglecomponent';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +16,7 @@ const message = 'React is Great!!!';
 
 root.render(
   <React.StrictMode>
-      <DataFetchComponent/>
+      <ToggleComponent/>
   </React.StrictMode>
 );
 
