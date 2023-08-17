@@ -3,4 +3,4 @@
   that is contained by the store
 */
 
-export const initialState = {categories:[]};
+export const initialState = {categories:[], category:{}};

@@ -8,6 +8,7 @@ const MainReduxComponent = () => {
     /* Subscribe to store to get the data from it */
 
     const cats = useSelector(state=>state.categories);
+    /* Logic to filter */
 
   return (
     <div className='container'>
