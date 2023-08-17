@@ -7,9 +7,13 @@
 
  # Day 3
 
+Duration: 120 Mins
+
  For the following two problem statements, you must create Action and Reducer
 
- 1. Modify the ListCategoriesComponent based on tyhe following requirements
+ 1. Modify the ListCategoriesComponent based on the following requirements
     - When the row is clicked, then the selected category details must be shown in AddCategoryComponent
     - The End-User can edit this data and click on 'Save' button, the updated record values must be shown back in the ListCategoryComponent
-2. Create a SearchComponent with the text-element in it, end-user can enter category base price in it and then the ListCategoryComponent must show all categories having BasePrice lesxs than the value of BasePrice entered in the Text-Element 
+2. Create a SearchComponent with the text-element in it, end-user can enter category's base price in it and then the ListCategoriesComponent must show all categories having BasePrice less than the value of BasePrice entered in the Text-Element 
+    - Action
+    - Reducer
