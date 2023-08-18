@@ -16,4 +16,13 @@ Duration: 120 Mins
     - The End-User can edit this data and click on 'Save' button, the updated record values must be shown back in the ListCategoryComponent
 2. Create a SearchComponent with the text-element in it, end-user can enter category's base price in it and then the ListCategoriesComponent must show all categories having BasePrice less than the value of BasePrice entered in the Text-Element 
     - Action
-    - Reducer
+    - Reducer`
+
+
+# Day 4: 
+1. Modify action constants from sagapp/constants/index.js for defining constants for reading category by categiryid, updating, and deleting category
+2. Modify action creators from  sagaapp/actions/index.js by adding action creators for reading single category by category id, updating, and deleting category
+3. Modify reducers from sagaapp/reducers/index.js by adding reducer cased for new action creators those are added
+4. Modify saga middlewares for update and delete geberator actions
+5. Modify the AddCategoryComponent that will load the category to be updated based on the table row selected from the ListCategoryComponent table. Dispatch an naction for modifying the category and then showing the modifed record in the ListCategoryComponent Table
+6. Add Delete button for each table row for ListCategoryComponent table to dispatch an action for deleting the category   

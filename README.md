@@ -158,3 +158,76 @@
         - @reduxjs/toolkit                
 
 
+# Using SAGA Middleware
+
+- An object that will have 'generator' functions. These functions will be handling all resource intensive operations and based on the state of execution, the action(s) will be dispatched
+
+- redux-saga
+    - @redux-saga/core
+        - The 'createSagaMiddleare()' function object
+        - This will load the SAGA middleware object at root level for store configuration
+        - This provides a 'run()' method, to continuouesly keep the middleware running at applciation level so that when an action is dispatched the necessary exceution can be taken place  
+    - redux-saga/effects
+        - A module that offers operator methods for monitoring and performing resource intensive operations
+        - take(), takeLatest(), takeOne()
+            - Listen to actions those are dispatched and then start performing necessary execution on them    
+        - call()
+            - Invokes an async operation
+            - This is also a generator that 'yield' the result
+                - start, read (current), return (yield  and moveNext()), moveNext()    
+                - yield call(getData);, return a single response type
+                - getDataFromServeres()
+                    - Internally making multiple Async calls and returning a composite result
+                - yield call(getDataFromServeres)  
+                - yield call(getData1);
+                - yield call(getData2);       
+````javascript
+    let names = ['A','B','C'];
+    // of: symbol.Iterator
+    for(let n of names){
+    }
+````
+        - put()
+            - Iterator based method
+            - Based on the execution of call() the result will be yielded
+            - In redux-saga, this is used for dispatching the output action 
+                - yield put(getResultsSuccess(result))
+        - all()
+            - a generator function object that will be responsible for providing the input action dispatch listeners so that they can be linked with their corresponsding outputactions
+````javascript
+    /*
+      parameters: the payload that is retiurned by the input action
+    */
+    function* outputListener(parameters){
+         const result = yield call(RESOURCE_INTENSIVE_OPERATION_CALLBACK, parameters);
+
+         yield put(OUTPUT_ACTION(result));
+
+    }
+    function* inputListener(){
+        yield takeLatest('INPUT_ACTION_TYPE', outputListener);
+    }
+
+    function* rootSaga(){
+        /* the collection of all input dispatcher those will be loaded on root to listen each dispatched action */
+        yield all([inputListener()]);
+    }
+
+````
+
+- Once the middleware is configured for the Redux app, the store MUST be using it so that side-effect methods once dispatched will be monitored by middleware and then the long-running async calls will be caompleted and whetever the respons data will be mutated into the store
+    - @redux-saga/core package
+        - The 'craeteSagaMiddleware()'
+            - create a Middlewate Configuration object that will be used by the store
+            - This provides a 'run()' method to make sure that the middleware is running at global level
+
+- Practices to be followed while using the Middleware in Redux app for managing Store Subscription and Dispatch from the View
+    - Make sure that the view which is dispatching should also manage subscription. THis is provide the implementation consistency.
+    - The Parent if it is dispatching an action and subscribing the store, then if the child component wants the data from the store let the parent component provide a memoized value / callback to the child so that the child will not necessrilily have any subscription or dispach      
+
+    - Make a use of 'useCallback()' hook, this will manage the memoization caching a value so that it will not be recalculated again and again and hence will provide a performance optimization to the component and hence to the mopunting
+        - THis is useful to isolate resource intensice function  for runing it frequently or automatically during mouning of the component
+        - The useCallback () hook only runs when one of its depednencies is updated
+        - Hence this is performance improvization factor of React app
+    - useMemo()
+        - This is for memoized value whjere as useCallback() is for memoized function                 
